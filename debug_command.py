@@ -8,6 +8,7 @@ Created on Tue Sep  6 17:34:22 2022
 
 import argparse
 import os
+import platform
 
 DEFAULT_ADDRESS = "127.0.0.1"
 DEFAULT_PORT="32330"
@@ -28,6 +29,24 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     rcon_command = " ".join(args.rcon_command)
+    
+    operating_system = platform.platform()
+    
+    executable_prefix=""
+    
+    if "linux" in operating_system.lower():
+        if args.verbose >= 2:
+            print(f"Operating on Linux ({operating_system})")
+        executable_prefix="./"
+    elif "windows" in operating_system.lower():
+        if args.verbose >= 2:
+            print(f"Operating on Windows ({operating_system})")
+        executable_prefix=""
+    else:
+        if args.verbose >= 1:
+            print(f"Operating on unknown or unsupported OS: {operating_system}")
+        executable_prefix="./"
+        
     
     if args.verbose >= 2:
         print(

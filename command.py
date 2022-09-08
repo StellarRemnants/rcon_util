@@ -34,17 +34,17 @@ if __name__ == "__main__":
     
     executable_prefix=""
     
-    if operating_system.lower() == "linux":
+    if "linux" in operating_system.lower():
         if args.verbose >= 2:
-            print("Operating on Linux")
+            print(f"Operating on Linux ({operating_system})")
         executable_prefix="./"
-    elif operating_system.lower() == "windows":
+    elif "windows" in operating_system.lower():
         if args.verbose >= 2:
-            print("Operating on Windows")
+            print(f"Operating on Windows ({operating_system})")
         executable_prefix=""
     else:
         if args.verbose >= 1:
-            print(f"Operating on unsupported OS: {operating_system}")
+            print(f"Operating on unknown or unsupported OS: {operating_system}")
         executable_prefix="./"
         
     
